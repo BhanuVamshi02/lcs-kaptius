@@ -182,7 +182,7 @@ function searchBooks(searchTerm) {
     }
   });
 
-  const parentContainer = document.querySelector(".container");
+  const parentContainer = document.querySelector(".card-container");
   const noBooksFoundMessage = parentContainer.querySelector(".no-books-found");
 
   if (foundBooks === 0 && !noBooksFoundMessage) {
