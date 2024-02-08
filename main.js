@@ -31,32 +31,16 @@ function saveBooksToLocalStorage(books) {
 // Class representing a Book
 class Book {
   constructor(title, author, genre, isbn, available) {
-    this._title = title;
-    this._author = author;
-    this._genre = genre;
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
     this._isbn = isbn;
-    this._available = available;
+    this.available = available;
   }
 
-  // Getter methods
-  get title() {
-    return this._title;
-  }
-
-  get author() {
-    return this._author;
-  }
-
-  get genre() {
-    return this._genre;
-  }
-
+  // Getter method
   get isbn() {
     return this._isbn;
-  }
-
-  get available() {
-    return this._available;
   }
 
   // Setter method for ISBN with validation
@@ -64,7 +48,7 @@ class Book {
     if (/^\d{3}-\d{3}-\d{3}$/.test(newIsbn)) {
       this._isbn = newIsbn;
     } else {
-      alert("ISBN should be in 123-456-789 format");
+      alert("Please Enter Valid ISBN");
     }
   }
 }
@@ -97,13 +81,13 @@ form.addEventListener("submit", (e) => {
   }
 
   // Add book to DOM and array if ISBN is in the correct format
-  if (/^\d{13}$/.test(isbn)) {
+  if (/^\d{3}-\d{3}-\d{3}$/.test(isbn)) {
     addBookToDOM(book);
     booksArr.push(book);
     saveBooksToLocalStorage(booksArr);
     form.reset();
   } else {
-    alert("Please enter the ISBN in the correct format (13 digits).");
+    alert("Please Enter Valid ISBN");
   }
 });
 
