@@ -52,6 +52,13 @@ class Book {
     }
   }
 }
+// Class representing a ReferenceBook, which extends Book (inheritance)
+class ReferenceBook extends Book {
+  constructor(title, author, genre, isbn, available, edition) {
+    super(title, author, genre, isbn, available);
+    this.edition = edition;
+  }
+}
 
 // Function to save books to local storage
 function saveBooksToLocalStorage(books) {
