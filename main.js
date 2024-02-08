@@ -116,8 +116,7 @@ function addBookToDOM(book) {
   }
 }
 
-// Rest of the code remains the same...
-
+// Delete the Book functionality
 cards.addEventListener("click", function (event) {
   const target = event.target;
   if (target.classList.contains("delete")) {
@@ -133,6 +132,7 @@ cards.addEventListener("click", function (event) {
   }
 });
 
+// Return the Book functionality
 cards.addEventListener("click", function (event) {
   const target = event.target;
   if (target.classList.contains("return")) {
@@ -149,12 +149,13 @@ cards.addEventListener("click", function (event) {
   }
 });
 
-// Searching the input
+// Searching the Book
 searchInput.addEventListener("input", function () {
   const searchTerm = searchInput.value.trim().toLowerCase();
   searchBooks(searchTerm);
 });
 
+//Search Function is called when ever user enters any input in search field
 function searchBooks(searchTerm) {
   const cards = document.querySelectorAll(".each-card");
   let foundBooks = 0;
@@ -168,7 +169,7 @@ function searchBooks(searchTerm) {
       .querySelector(".card-genre .name")
       .textContent.toLowerCase();
     const isbn = card.querySelector(".card-content").textContent.toLowerCase();
-
+    // checking if any  of the fields contains the search term if found just add them to foundBooks count
     if (
       title.includes(searchTerm) ||
       author.includes(searchTerm) ||
@@ -182,14 +183,17 @@ function searchBooks(searchTerm) {
     }
   });
 
+  // adding h1 on No-search Msg
   const parentContainer = document.querySelector(".card-container");
   const noBooksFoundMessage = parentContainer.querySelector(".no-books-found");
 
+  // if search results not found and there if h1 not exists just create one and display msg
   if (foundBooks === 0 && !noBooksFoundMessage) {
     const noBooksFound = document.createElement("h1");
     noBooksFound.classList.add("no-books-found");
     noBooksFound.textContent = "No Books Found";
     parentContainer.appendChild(noBooksFound);
+    // if search results found and h1 exists remove h1 with its parent div i.e, .no-books-found
   } else if (foundBooks > 0 && noBooksFoundMessage) {
     noBooksFoundMessage.remove();
   }
