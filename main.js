@@ -1,4 +1,4 @@
-// Add this code to check if the card container has no children and add the "No Books Added" message accordingly
+//1.  getting all the data when page gets rendered
 window.addEventListener("DOMContentLoaded", () => {
   const cardContainer = document.querySelector(".card-container");
   const noBooksAddedMessage = document.createElement("h1");
@@ -28,6 +28,52 @@ function saveBooksToLocalStorage(books) {
   localStorage.setItem("books", JSON.stringify(books));
 }
 
+// Class representing a Book
+class Book {
+  constructor(title, author, genre, isbn, available) {
+    this._title = title;
+    this._author = author;
+    this._genre = genre;
+    this._isbn = isbn;
+    this._available = available;
+  }
+
+  // Getter methods
+  get title() {
+    return this._title;
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  get genre() {
+    return this._genre;
+  }
+
+  get isbn() {
+    return this._isbn;
+  }
+
+  get available() {
+    return this._available;
+  }
+
+  // Setter method for ISBN with validation
+  set isbn(newIsbn) {
+    if (/^\d{3}-\d{3}-\d{3}$/.test(newIsbn)) {
+      this._isbn = newIsbn;
+    } else {
+      alert("ISBN should be in 123-456-789 format");
+    }
+  }
+}
+
+// Function to save books to local storage
+function saveBooksToLocalStorage(books) {
+  localStorage.setItem("books", JSON.stringify(books));
+}
+
 // Event listener for form submission
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -50,35 +96,16 @@ form.addEventListener("submit", (e) => {
     book = new Book(title, author, genre, isbn, available);
   }
 
-  // Add book to DOM and array
-  addBookToDOM(book);
-  booksArr.push(book);
-
-  // Save books to local storage
-  saveBooksToLocalStorage(booksArr);
-
-  // Reset form fields
-  form.reset();
+  // Add book to DOM and array if ISBN is in the correct format
+  if (/^\d{13}$/.test(isbn)) {
+    addBookToDOM(book);
+    booksArr.push(book);
+    saveBooksToLocalStorage(booksArr);
+    form.reset();
+  } else {
+    alert("Please enter the ISBN in the correct format (13 digits).");
+  }
 });
-
-// Class representing a Book
-class Book {
-  constructor(title, author, genre, isbn, available) {
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.isbn = isbn;
-    this.available = available;
-  }
-}
-
-// Class representing a ReferenceBook, which extends Book (inheritance)
-class ReferenceBook extends Book {
-  constructor(title, author, genre, isbn, available, edition) {
-    super(title, author, genre, isbn, available);
-    this.edition = edition;
-  }
-}
 
 // Function to add a book to the DOM
 function addBookToDOM(book) {
