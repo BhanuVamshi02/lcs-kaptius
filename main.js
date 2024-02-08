@@ -149,6 +149,7 @@ cards.addEventListener("click", function (event) {
   }
 });
 
+// Searching the input
 searchInput.addEventListener("input", function () {
   const searchTerm = searchInput.value.trim().toLowerCase();
   searchBooks(searchTerm);
