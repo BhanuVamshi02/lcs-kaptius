@@ -191,8 +191,7 @@ function searchBooks(searchTerm) {
     if (
       title.includes(searchTerm) ||
       author.includes(searchTerm) ||
-      genre.includes(searchTerm) ||
-      isbn.includes(searchTerm)
+      genre.includes(searchTerm)
     ) {
       card.style.display = "block";
       foundBooks++;
