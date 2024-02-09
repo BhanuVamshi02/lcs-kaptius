@@ -338,16 +338,22 @@ form {
 
 .success-message {
   text-align: center;
-  background-color: #aaf4e5;
+  /* background-color: #aaf4e5; */
+  background-color: #fff;
+
+  border: 5px solid #23574c;
   width: 300px;
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-
 .success-message h2,
 .success-message p {
-  background-color: #aaf4e5;
+  /* background-color: #aaf4e5; */
+  background-color: #fff;
+}
+.success-message p {
+  color: #5e5e5e;
 }
 .success-message h2 {
   color: #23574c;
