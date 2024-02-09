@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
 const form = document.querySelector(".data-form");
 const cards = document.querySelector(".card-container");
 const searchInput = document.getElementById("search");
-let booksArr = [];
+let booksArr = JSON.parse(localStorage.getItem("books")) || [];
 
 // Function to save books to local storage
 function saveBooksToLocalStorage(books) {
@@ -91,6 +91,7 @@ form.addEventListener("submit", (e) => {
   if (/^\d{3}-\d{3}-\d{3}$/.test(isbn)) {
     addBookToDOM(book);
     booksArr.push(book);
+    console.log(booksArr);
     saveBooksToLocalStorage(booksArr);
     form.reset();
   } else {
@@ -191,7 +192,8 @@ function searchBooks(searchTerm) {
     if (
       title.includes(searchTerm) ||
       author.includes(searchTerm) ||
-      genre.includes(searchTerm)
+      genre.includes(searchTerm) ||
+      isbn.includes(searchTerm)
     ) {
       card.style.display = "block";
       foundBooks++;
